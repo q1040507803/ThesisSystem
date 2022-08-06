@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.LeaYrx.dao.TeacherMapper">
+
+    <insert id="addTeacher" parameterType="Teacher">
+        INSERT INTO thesissystem.teacher(tid, tname, cid)
+        VALUE (#{tid},#{tname},#{cid});
+    </insert>
+
+    <delete id="deleteTeacherById" parameterType="String">
+        DELETE FROM thesissystem.teacher
+        WHERE tid = #{tid};
+    </delete>
+
+    <update id="updateTeacher" parameterType="Teacher">
+        UPDATE thesissystem.teacher
+        SET tname = #{tname},cid = #{cid}
+        WHERE tid = #{tid}
+    </update>
+    
+    <select id="queryAllTeacher" resultType="Teacher">
+        SELECT * FROM thesissystem.teacher;
+    </select>
+
+    <select id="queryTeacherById" resultType="Teacher">
+        SELECT * FROM thesissystem.teacher
+        WHERE tid = #{tid};
+    </select>
+
+    <select id="queryTeacherByName" resultType="Teacher">
+        SELECT * FROM thesissystem.teacher
+        WHERE tname = #{tname};
+    </select>
+
+</mapper>

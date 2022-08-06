@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.LeaYrx.dao.ThesisMapper">
+
+    <insert id="addThesis" parameterType="Thesis">
+        INSERT INTO thesissystem.thesis (sid,thname,tid,cid)
+        VALUES (#{student.sid},#{thname},#{teacher.tid},#{college.cid});
+    </insert>
+
+    <delete id="deleteThesisById" parameterType="int">
+        DELETE FROM thesissystem.thesis
+        WHERE thid = #{thid};
+    </delete>
+
+    <update id="updateThesis" parameterType="Thesis">
+        UPDATE thesissystem.thesis
+        SET sid = #{student.sid},thname = #{thname},tid = #{teacher.tid},cid = #{college.cid}
+        WHERE thid = #{thid};
+    </update>
+
+    <!---->
+    <select id="queryAllThesis" resultMap="ThesisInformation">
+        SELECT * FROM thesissystem.thesis;
+    </select>
+
+
+    <select id="queryThesisById" resultMap="ThesisInformation">
+        SELECT * FROM thesissystem.thesis
+        WHERE thid = #{thid};
+    </select>
+
+    <select id="queryThesisByName" resultMap="ThesisInformation">
+        SELECT * FROM thesissystem.thesis
+        WHERE thname LIKE #{thname};
+    </select>
+
+    <resultMap id="ThesisInformation" type="Thesis">
+        <result property="thid" column="thid"/>
+        <result property="thname" column="thname"/>
+        <!--复杂的属性需要单独处理 对象：association 集合：collection-->
+        <association property="student" column="sid" javaType="Student" select="getStudent"/>
+        <association property="teacher" column="tid" javaType="Teacher" select="getTeacher"/>
+        <association property="college" column="cid" javaType="College" select="getCollege"/>
+    </resultMap>
+
+    <select id="getStudent" resultType="Student">
+        SELECT * FROM thesissystem.student WHERE sid = #{id};
+    </select>
+
+    <select id="getTeacher" resultType="Teacher">
+        SELECT * FROM thesissystem.teacher WHERE tid = #{id};
+    </select>
+
+    <select id="getCollege" resultType="College">
+        SELECT * FROM thesissystem.college WHERE cid = #{id};
+    </select>
+
+    <!--<select id="queryThesisByName" resultType="Thesis">-->
+    <!--    SELECT * FROM thesissystem.thesis-->
+    <!--    WHERE 1=1-->
+    <!--    <if test="thname != null">-->
+    <!--        AND thname =#{thname}-->
+    <!--    </if>-->
+    <!--    <if test="tname != null">-->
+    <!--        AND tid = #{tid}-->
+    <!--    </if>-->
+    <!--</select>-->
+
+</mapper>

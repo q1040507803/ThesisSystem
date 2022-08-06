@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.LeaYrx.service"/>
+
+    <bean id="ThesisServiceImpl" class="com.LeaYrx.service.ThesisServiceImpl">
+        <property name="thesisMapper" ref="thesisMapper"/>
+    </bean>
+
+    <bean id="TeacherServiceImpl" class="com.LeaYrx.service.TeacherServiceImpl">
+        <property name="teacherMapper" ref="teacherMapper"/>
+    </bean>
+
+    <bean id="CollegeServiceImpl" class="com.LeaYrx.service.CollegeServiceImpl">
+        <property name="collegeMapper" ref="collegeMapper"/>
+    </bean>
+
+    <bean id="StudentServiceImpl" class="com.LeaYrx.service.StudentServiceImpl">
+        <property name="studentMapper" ref="studentMapper"/>
+    </bean>
+
+    <bean id="LoginServiceImpl" class="com.LeaYrx.service.LoginServiceImpl">
+        <property name="loginMapper" ref="loginMapper"/>
+    </bean>
+
+    <bean id="TransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+</beans>

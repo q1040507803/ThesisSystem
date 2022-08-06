@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.LeaYrx.dao.CollegeMapper">
+    
+    <select id="queryAllCollege" resultType="College">
+        SELECT * FROM thesissystem.college;
+    </select>
+
+    <select id="queryCollegeById" resultType="College">
+        SELECT * FROM thesissystem.college
+        WHERE cid = #{cid}
+    </select>
+
+    <select id="queryCollegeByName" resultType="College">
+        SELECT * FROM thesissystem.college
+        WHERE cname = #{cname}
+    </select>
+</mapper>

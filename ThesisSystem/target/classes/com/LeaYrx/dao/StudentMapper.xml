@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.LeaYrx.dao.StudentMapper">
+    <insert id="addStudent" parameterType="Student">
+        INSERT INTO thesissystem.student (sid, sname, cid, tid)
+        VALUES (#{sid},#{sname},#{cid},#{tid});
+    </insert>
+
+    <delete id="deleteStudentById" parameterType="String">
+        DELETE FROM thesissystem.student
+        WHERE sid = #{sid};
+    </delete>
+
+    <update id="updateStudent" parameterType="Student">
+        UPDATE thesissystem.student
+        SET sname = #{sname}, tid=#{tid}, cid =#{cid}
+        WHERE sid = #{sid}
+    </update>
+
+    <select id="queryAllStudent" resultType="Student">
+        SELECT * FROM thesissystem.student
+    </select>
+
+
+    <select id="queryStudentById" resultType="Student">
+        SELECT * FROM thesissystem.student
+        WHERE sid = #{sid};
+    </select>
+
+    <select id="queryStudentByName" resultType="Student">
+        SELECT * FROM thesissystem.student
+        WHERE sname =#{sname};
+    </select>
+
+</mapper>
